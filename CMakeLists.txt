@@ -6,7 +6,24 @@ set(CMAKE_C_STANDARD 11)
 add_subdirectory(libft)
 add_subdirectory(filler)
 
-add_custom_target(test-abanlin
-		COMMAND ./resources/filler_vm -p1 ./resources/players/abanlin.filler -p2 ./build/filler/modnosum.filler -f ./resources/maps/map00
-		DEPENDS ${PROJECT_NAME}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+set(RES_DIR ./resources)
+set(MAPS_DIR ${RES_DIR}/maps)
+set(PLAYERS_DIR ${RES_DIR}/players)
+set(FILLER_VM ${RES_DIR}/filler_vm)
+set(FILLER_MAP ${MAPS_DIR}/map00)
+set(FILLER_ENEMY ${PLAYERS_DIR}/abanlin.filler)
+set(FILLER_ME ./build/filler/modnosum.filler)
+set(FILLER_TIMEOUT 1)
+
+add_custom_target(
+		test-filler
+		COMMAND
+			${FILLER_VM}
+			-f ${FILLER_MAP}
+			-p1 ${FILLER_ENEMY}
+			-p2 ${FILLER_ME}
+			-t ${FILLER_TIMEOUT}
+		DEPENDS
+			${PROJECT_NAME}
+		WORKING_DIRECTORY
+			${CMAKE_CURRENT_SOURCE_DIR})
