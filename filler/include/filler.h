@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 03:17:56 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:11:37 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,18 @@ typedef struct		s_player
 	t_upoint		pos;
 }					t_player;
 
+typedef struct		s_field
+{
+	t_upoint		size;
+	char 			*data;
+}					t_field;
+
 typedef struct		s_data
 {
 	t_player		me;
 	t_player		enemy;
-	t_upoint		map_size;
-	t_upoint		piece_size;
+	t_field			map;
+	t_field			piece;
 }					t_data;
 
 void				parse_input(char *input, t_data *data);

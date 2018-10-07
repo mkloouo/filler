@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 01:35:09 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 02:34:31 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:04:45 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 
 void		store_parsed_input(t_data *data)
 {
-	int data_fd = ft_open_file("data.txt", FILE_WRITE);
-	if (data_fd == -1) {
+	int		data_fd;
+
+	data_fd = ft_open_file("data.txt", FILE_WRITE);
+	if (data_fd == -1)
+	{
 		ft_dprintf(IO_STDERR, "Could not open file: %s\n", "data.txt");
 		return ;
 	}
@@ -26,13 +29,13 @@ void		store_parsed_input(t_data *data)
 			data->me.type, data->me.pos.x, data->me.pos.y,
 			data->enemy.type, data->enemy.pos.x, data->enemy.pos.y);
 	ft_dprintf(data_fd, "map: %zu x %zu\n",
-			data->map_size.x, data->map_size.y);
+			data->map.size.x, data->map.size.y);
 	ft_dprintf(data_fd, "piece: %zu x %zu\n",
-			data->piece_size.x, data->piece_size.y);
+			data->piece.size.x, data->piece.size.y);
 	ft_close_file(data_fd);
 }
 
-void init_data(t_data *data)
+void		init_data(t_data *data)
 {
 	data->me.type = FIRST_PLAYER;
 	data->me.pos.x = 0;
@@ -40,8 +43,12 @@ void init_data(t_data *data)
 	data->enemy.type = FIRST_PLAYER;
 	data->enemy.pos.x = 0;
 	data->enemy.pos.y = 0;
-	data->map_size.x = 0;
-	data->map_size.y = 0;
+	data->map.size.x = 0;
+	data->map.size.y = 0;
+	data->map.data = 0;
+	data->piece.size.y = 0;
+	data->piece.size.x = 0;
+	data->piece.data = 0;
 }
 
 int			main(int ac, char **av)
@@ -56,8 +63,6 @@ int			main(int ac, char **av)
 		parse_input(line, &data);
 		free(line);
 	}
-	parse_input(line, &data);
-	free(line);
 	store_parsed_input(&data);
 	return (0);
 }

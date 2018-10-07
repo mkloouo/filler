@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:18:30 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 03:29:21 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:04:12 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <ft/conv.h>
 #include <ft/io.h>
 #include <ft/memory.h>
-
-#define PLAYER_CHOICE_SKIP_CHARS (10)
 
 void			parse_point_size(char *input, t_upoint *point)
 {
@@ -31,8 +29,8 @@ void			parse_point_size(char *input, t_upoint *point)
 
 void			skip_parse(size_t times)
 {
-	char 		*line;
-	size_t 		i;
+	char		*line;
+	size_t		i;
 
 	i = 0;
 	while (i < times)
@@ -43,7 +41,7 @@ void			skip_parse(size_t times)
 	}
 }
 
-void			parse_input(char* input, t_data* data)
+void			parse_input(char *input, t_data *data)
 {
 	char const	*occ;
 
@@ -57,12 +55,13 @@ void			parse_input(char* input, t_data* data)
 	}
 	else if (ft_strstarts(input, "Plateau"))
 	{
-		parse_point_size(input, &data->map_size);
-		skip_parse(data->map_size.y);
+		parse_point_size(input, &data->map.size);
+		skip_parse(data->map.size.y + 1);
 	}
 	else if (ft_strstarts(input, "Piece"))
 	{
-		parse_point_size(input, &data->piece_size);
-		skip_parse(data->piece_size.y);
+		parse_point_size(input, &data->piece.size);
+		skip_parse(data->piece.size.y);
+		ft_printf("%d %d\n", 0, 0);
 	}
 }
