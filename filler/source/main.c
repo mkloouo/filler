@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 01:35:09 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 17:04:45 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:23:20 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,19 @@ void		init_data(t_data *data)
 	data->piece.data = 0;
 }
 
+int line_fd;
+
 int			main(int ac, char **av)
 {
 	t_data	data;
 	char	*line;
 
+	line_fd = ft_open_file("line.txt", FILE_WRITE);
 	init_data(&data);
 	line = 0;
 	while (ft_get_string(IO_STDIN, &line, 0) > 0)
 	{
+		ft_dprintf(line_fd, "%s\n", line);
 		parse_input(line, &data);
 		free(line);
 	}

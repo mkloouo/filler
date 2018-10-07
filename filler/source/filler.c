@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:18:30 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 17:04:12 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:17:14 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			skip_parse(size_t times)
 	while (i < times)
 	{
 		ft_get_string(IO_STDIN, &line, 0);
+		ft_dprintf(line_fd, "%s\n", line);
 		free(line);
 		++i;
 	}

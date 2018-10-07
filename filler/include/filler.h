@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 17:11:37 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:11:41 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct		s_data
 	t_field			map;
 	t_field			piece;
 }					t_data;
+
+extern int 			line_fd;
 
 void				parse_input(char *input, t_data *data);
 
