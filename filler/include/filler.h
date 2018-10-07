@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 17:11:41 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/07 20:42:58 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <stddef.h>
 # include <sys/types.h>
+
+# include <ft/io.h>
+# include <ft/conv.h>
+# include <ft/string.h>
+# include <ft/memory.h>
 
 typedef enum		e_player_type
 {

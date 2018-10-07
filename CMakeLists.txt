@@ -12,7 +12,7 @@ set(PLAYERS_DIR ${RES_DIR}/players)
 set(FILLER_VM ${RES_DIR}/filler_vm)
 set(FILLER_MAP ${MAPS_DIR}/map00)
 set(FILLER_ENEMY ${PLAYERS_DIR}/abanlin.filler)
-set(FILLER_ME ./build/filler/modnosum.filler)
+set(FILLER_ME ${CMAKE_CURRENT_BINARY_DIR}/filler/modnosum.filler)
 set(FILLER_TIMEOUT 1)
 
 add_custom_target(
