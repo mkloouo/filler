@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 20:42:58 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/10 17:16:15 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_player
 typedef struct		s_field
 {
 	t_upoint		size;
-	char 			*data;
+	char			*data;
 }					t_field;
 
 typedef struct		s_data
@@ -52,8 +52,6 @@ typedef struct		s_data
 	t_field			map;
 	t_field			piece;
 }					t_data;
-
-extern int 			line_fd;
 
 void				parse_input(char *input, t_data *data);
 

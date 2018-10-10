@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:18:30 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/07 20:47:47 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/10 17:08:04 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void			parse_input(char *input, t_data *data)
 	{
 		parse_point_size(input, &data->piece.size);
 		skip_parse(data->piece.size.y);
-		ft_putstr("12 14\n");
+		ft_putstr("0 0\n");
 	}
 }
