@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/10 17:16:15 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/10 18:22:08 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,28 @@
 # include <ft/string.h>
 # include <ft/memory.h>
 
-typedef enum		e_player_type
+typedef struct	s_point
 {
-	FIRST_PLAYER = 'O',
-	SECOND_PLAYER = 'X'
-}					t_player_type;
+	uint32_t 	x;
+	uint32_t 	y;
+}				t_point;
 
-typedef struct		s_upoint
+typedef struct	s_field
 {
-	size_t			y;
-	size_t			x;
-}					t_upoint;
+	t_point		size;
+	char 		*data;
+}				t_field;
 
-typedef struct		s_player
+typedef struct	s_filler
 {
-	t_player_type	type;
-	t_upoint		pos;
-}					t_player;
+	t_field		piece;
+	t_field		map;
+}				t_filler;
 
-typedef struct		s_field
-{
-	t_upoint		size;
-	char			*data;
-}					t_field;
+void			filler_init(t_filler *filler);
+void			filler_run(t_filler *filler);
+void			filler_end(t_filler *filler);
 
-typedef struct		s_data
-{
-	t_player		me;
-	t_player		enemy;
-	t_field			map;
-	t_field			piece;
-}					t_data;
-
-void				parse_input(char *input, t_data *data);
+void			filler_parse(t_filler *filler);
 
 #endif
