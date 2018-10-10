@@ -4,8 +4,16 @@
 # @date     10/10/2018
 # @author   Mykola Odnosumov
 
+is_score=0;
+if [ "${1}" = "-s" ]; then
+	is_score=1;
+	shift;
+fi
+
 if [ -z $1 ] || [ -z $2 ] || [ -z $3 ] || [ -z $4 ]; then
-	printf "Usage: %s filler_vm maps_dir players_dir your_exe [ repeats ] [ timeout ]\n" $0;
+	printf "Usage: %s [-s] filler_vm maps_dir players_dir" $0;
+	printf "your_exe [repeats] [timeout]\n";
+	printf "\t-s\tEnable score instead of wins\n";
 	exit 1;
 fi
 
