@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/11 01:13:31 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/11 01:14:01 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct	s_filler
 }				t_filler;
 
 void			filler_init(t_filler *filler);
-void			filler_free_field_rows(t_field *field, size_t move);
+void			filler_free_field(t_field *field, size_t move);
 
 void			filler_run(t_filler *filler);
 

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 01:10:41 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/11 01:11:15 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/11 02:41:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,9 @@ void			filler_read_field(t_field *field, char const *header,
 	tmp = ft_strchr(header, ' ') + 1;
 	field->size.y = ft_strtoi(tmp);
 	field->size.x = ft_strtoi(ft_strchr(tmp, ' ') + 1);
-	if (field->data == 0)
-		field->data = malloc(sizeof(char*) * field->size.y);
-	else
-		filler_free_field_rows(field, move);
+	if (field->data)
+		filler_free_field(field, move);
+	field->data = malloc(sizeof(char*) * field->size.y);
 	i = 0;
 	while (i < field->size.y && ft_get_string(IO_STDIN, &line, LINE_BREAK) > 0)
 		field->data[i++] = line + move;
