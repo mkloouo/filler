@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/11 01:14:01 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/11 20:15:50 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <ft/string.h>
 # include <ft/memory.h>
 
+# ifdef DEBUG
+extern int _log_fd;
+#  define LOG(STR) ft_dprintf(_log_fd, STR)
+#  define LOGV(STR, ...) ft_dprintf(_log_fd, STR, __VA_ARGS__)
+# endif
+
 # define PLAYER_CHAR 'p'
 # define PLAYER_LINE "$$$ exec p"
 # define PLAYER_LINE_LEN (10)
@@ -32,17 +38,17 @@
 # define PIECE_LINE "Piece"
 # define PIECE_LINE_LEN (5)
 
-typedef enum	e_player
-{
-	FIRST_PLAYER = 'o',
-	SECOND_PLAYER = 'x'
-}				t_player;
-
 typedef struct	s_point
 {
 	int			x;
 	int			y;
 }				t_point;
+
+typedef struct	s_rectangle
+{
+	t_point		left_top;
+	t_point		right_bottom;
+}				t_rectangle;
 
 typedef struct	s_field
 {
@@ -52,8 +58,8 @@ typedef struct	s_field
 
 typedef struct	s_filler
 {
-	t_player	me;
-	t_player	enemy;
+	char		me;
+	char		enemy;
 	t_field		map;
 	t_field		piece;
 	t_point		step;

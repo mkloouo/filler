@@ -4,7 +4,7 @@ project(modnosum.filler C)
 set(CMAKE_C_STANDARD 11)
 
 set(CMAKE_C_FLAGS "-Wall -Werror -Wextra")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -g")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -g -DDEBUG")
 
 add_subdirectory(libft)
 add_subdirectory(filler)
