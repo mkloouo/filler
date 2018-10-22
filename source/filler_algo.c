@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*   By: modnosum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 01:14:13 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/11 21:04:52 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/22 20:23:00 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,21 @@ t_bool			find_player_rect(t_field *map, char player, t_rectangle *rect)
 	return (found);
 }
 
+void            place_piece(t_filler *filler, t_rectangle *me, t_rectangle *enemy)
+{
+	(void)filler;
+	(void)me;
+	(void)enemy;
+}
+
 void			filler_algo(t_filler *filler)
 {
-	t_rectangle	rect;
+    t_rectangle	my_rect;
+    t_rectangle	enemy_rect;
 
-	if (!find_player_rect(&filler->map, filler->me, &rect))
-	{
-		filler->step = (t_point) {0, 0};
-		return ;
-	}
-	// TODO: Implement algo to set piece to a cool position;
+    filler->step = (t_point) {0, 0};
+    if (!find_player_rect(&filler->map, filler->me, &my_rect) ||
+        !find_player_rect(&filler->map, filler->enemy, &enemy_rect))
+        return ;
+    place_piece(filler, &my_rect, &enemy_rect);
 }

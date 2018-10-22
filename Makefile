@@ -6,26 +6,26 @@
 #    By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/16 20:46:58 by modnosum          #+#    #+#              #
-#    Updated: 2018/09/08 23:32:46 by modnosum         ###   ########.fr        #
+#    Updated: 2018/10/17 01:49:26 by modnosum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-SRC_DIR		:= ./filler/source
-INC_DIR		:= ./filler/include
-OBJ_DIR		:= ./filler/build
-
-SRC_EXT		:= c
-OBJ_EXT		:= o
 
 libft_PATH	:= ./libft
 include		$(libft_PATH)/Project.mk
 
-CC		:= gcc
+CC			:= gcc
 CFLAGS		:= -Wall -Werror -Wextra -pedantic -g -DDEBUG
 IFLAGS		+= -I $(INC_DIR)
 LFLAGS		+=
 
-MFLAGS		?= --no-print-directory
+SRC_DIR		:= source
+INC_DIR		:= include
+OBJ_DIR		:= build
+
+SRC_EXT		:= c
+OBJ_EXT		:= o
+
+MFLAGS		+= --no-print-directory
 
 NAME		:= modnosum.filler
 
@@ -43,24 +43,27 @@ GREEN_COLOR	?= \e[32m
 all: $(NAME)
 c: clean
 clean:
+	@$(MAKE) $(MFLAGS) -C $(libft_PATH) clean
 	@rm -fr $(OBJ_DIR)
-	@$(call REMOVED_FILE,$(OBJ_DIR))
+	@echo "Removed ft_ssl build directory."
 f: fclean
 fclean: clean
+	@$(MAKE) $(MFLAGS) -C $(libft_PATH) fclean
 	@rm -fr $(NAME)
-	@$(call REMOVED_FILE,$(NAME))
-re: clean all
+	@echo "Removed ft_ssl executable."
+re: fclean all
 
-$(DIRS):
-	@mkdir -p $@
+$(OBJ_DIR):
+	@mkdir -p $(DIRS)
+	@echo "Created ft_ssl build directory."
 
-$(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) | $(DIRS)
+$(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(IFLAGS) $(CFLAGS)
-	@$(call CREATED_FILE,$@,$<);
+
+$(NAME): $(OBJS) | $(libft_NAME)
+	@echo "Finished compiling ft_ssl object files."
+	@$(CC) -o $@ $^ $(LFLAGS) $(IFLAGS) $(CFLAGS)
+	@echo "Finished ft_ssl."
 
 $(libft_NAME): $(libft_DEPS)
 	@$(MAKE) $(MFLAGS) -C $(libft_PATH) all
-
-$(NAME): $(OBJS) | $(libft_NAME)
-	@$(CC) -o $@ $^ $(LFLAGS) $(IFLAGS) $(CFLAGS)
-	@$(call FINISHED_FILE,$@);

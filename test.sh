@@ -11,7 +11,7 @@ if [ "${1}" = "-s" ]; then
 fi
 
 if [ -z $1 ] || [ -z $2 ] || [ -z $3 ] || [ -z $4 ]; then
-	printf "Usage: %s [-s] filler_vm maps_dir players_dir" $0;
+	printf "Usage: %s [-s] filler_vm maps_dir players_dir " $0;
 	printf "your_exe [repeats] [timeout]\n";
 	printf "\t-s\tEnable score instead of wins\n";
 	exit 1;
@@ -19,7 +19,19 @@ fi
 
 filler_vm=$1
 maps_dir=$2
+maps=
+if [ -f ${maps_dir} ]; then
+    maps=${maps_dir};
+else
+    maps=${maps_dir}/*;
+fi
 players_dir=$3
+players=
+if [ -f ${players_dir} ]; then
+    players=${players_dir};
+else
+    players=${players_dir}/*;
+fi
 me=$4
 repeats=$5
 timeout=$6
@@ -72,9 +84,9 @@ function run_test {
 	fi
 }
 
-for map in ${maps_dir}/*; do
+for map in ${maps}; do
 	printf "Doing map %s\n" $(basename ${map});
-	for player in ${players_dir}/*; do
+	for player in ${players}; do
 		won_as_p1=0;
 		won_as_p2=0;
 		for i in ${repeats_arr}; do
