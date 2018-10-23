@@ -5,32 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/23 19:16:05 by modnosum         ###   ########.fr       */
+/*   Created: 2018/10/23 20:31:24 by modnosum          #+#    #+#             */
+/*   Updated: 2018/10/23 21:23:40 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 
-# include <stddef.h>
-# include <sys/types.h>
+typedef struct	s_size
+{
+	int			width;
+	int			height;
+}				t_size;
 
-# include <ft/io.h>
-# include <ft/conv.h>
-# include <ft/string.h>
-# include <ft/memory.h>
-
-# define PLAYER_CHAR 'p'
-# define PLAYER_LINE "$$$ exec p"
-# define PLAYER_LINE_LEN (10)
-
-# define MAP_FIELD_START (4)
-# define MAP_LINE "Plateau"
-# define MAP_LINE_LEN (7)
-
-# define PIECE_LINE "Piece"
-# define PIECE_LINE_LEN (5)
+typedef struct	s_field
+{
+	t_size		size;
+	char		**data;
+}				t_field;
 
 typedef struct	s_point
 {
@@ -38,46 +31,28 @@ typedef struct	s_point
 	int			y;
 }				t_point;
 
-typedef struct	s_rectangle
-{
-	t_point		left_top;
-	t_point		right_bottom;
-}				t_rectangle;
-
-typedef struct	s_field
-{
-	t_point		size;
-	char		**data;
-}				t_field;
-
 typedef struct	s_player
 {
 	char		c;
-	t_rectangle	pos;
+	t_point		pos;
 }				t_player;
 
 typedef struct	s_filler
 {
-	t_player	me;
-	t_player	enemy;
 	t_field		map;
 	t_field		piece;
 	t_point		step;
+	t_player	me;
+	t_player	enemy;
+	t_point		direction;
+	unsigned	first_time:1;
 }				t_filler;
 
-void			filler_init(t_filler *filler);
-void			filler_free_field(t_field *field, size_t move);
+void			parse_field(t_field *field, int offset, char const *pos_data);
+void			free_field(t_field *field, int inset);
 
-void			filler_run(t_filler *filler);
-
-t_bool			filler_parse(t_filler *filler, char *line);
-t_bool			filler_parse_players(t_filler *filler);
-void			filler_read_field(t_field *field, char const *header,
-				size_t move);
-
-void			filler_act(t_filler *filler);
-void			filler_algo(t_filler *filler);
-
-void			filler_end(t_filler *filler);
+void			find_players_position(t_filler *filler);
+void			get_movement_direction(t_filler *filler);
+void			place_piece(t_filler *filler);
 
 #endif
