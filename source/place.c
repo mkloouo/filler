@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 20:59:51 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/23 21:23:34 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 21:43:10 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,16 @@ void		get_movement_direction(t_filler *filler)
 		filler->direction = (t_point){0, 0};
 }
 
+void		get_distance(t_filler *filler)
+{
+	(void)filler;
+	// filler->distance = ft_abs(filler->enemy.pos.x - filler->me.pos.x)
+	// + ft_abs(filler->enemy.pos.y - filler->me.pos.y)
+}
+
 void		move_in_direction(t_filler *filler)
 {
-	filler->step = (t_point){0, 0};
+	(void)filler;
 }
 
 void		place_piece(t_filler *filler)
@@ -51,5 +58,6 @@ void		place_piece(t_filler *filler)
 	if (filler->first_time)
 		find_players_position(filler);
 	get_movement_direction(filler);
+	get_distance(filler);
 	move_in_direction(filler);
 }

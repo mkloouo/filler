@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 20:47:09 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/23 21:16:03 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 21:38:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,5 @@ void		parse_field(t_field *field, int offset, char const *pos_data)
 	field->size = nsize;
 	i = 0;
 	while (i < nsize.height && ft_get_string(IO_STDIN, &line, LINE_BREAK) > 0)
-	{
-		field->data[i] = line + offset;
-		++i;
-	}
+		field->data[i++] = line + offset;
 }

@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 21:02:08 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/23 21:16:08 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 21:38:06 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int				main(void)
 	char		*line;
 
 	line = 0;
+	filler.map.data = 0;
+	filler.piece.data = 0;
 	ft_get_string(IO_STDIN, &line, LINE_BREAK);
 	filler.me.c = (ft_atoi(ft_strchr(line, 'p') + 1) == 1 ? 'O' : 'X');
 	filler.enemy.c = (filler.me.c == 'O' ? 'X' : 'O');

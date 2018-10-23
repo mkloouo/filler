@@ -6,7 +6,7 @@
 /*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 20:31:24 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/23 21:23:40 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 21:43:08 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ typedef struct	s_filler
 	t_player	me;
 	t_player	enemy;
 	t_point		direction;
+	int			distance;
 	unsigned	first_time:1;
 }				t_filler;
 
 void			parse_field(t_field *field, int offset, char const *pos_data);
 void			free_field(t_field *field, int inset);
 
+void			place_piece(t_filler *filler);
+
 void			find_players_position(t_filler *filler);
 void			get_movement_direction(t_filler *filler);
-void			place_piece(t_filler *filler);
+void			get_distance(t_filler *filler);
+void			move_in_direction(t_filler *filler);
 
 #endif
