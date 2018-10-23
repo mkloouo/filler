@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modnosum <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 02:06:54 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/22 20:23:00 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 19:16:05 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 # include <ft/conv.h>
 # include <ft/string.h>
 # include <ft/memory.h>
-
-# ifdef DEBUG
-extern int _log_fd;
-#  define LOG(STR) ft_dprintf(_log_fd, STR)
-#  define LOGV(STR, ...) ft_dprintf(_log_fd, STR, __VA_ARGS__)
-# endif
 
 # define PLAYER_CHAR 'p'
 # define PLAYER_LINE "$$$ exec p"
@@ -56,13 +50,18 @@ typedef struct	s_field
 	char		**data;
 }				t_field;
 
+typedef struct	s_player
+{
+	char		c;
+	t_rectangle	pos;
+}				t_player;
+
 typedef struct	s_filler
 {
-	char		me;
-	char		enemy;
+	t_player	me;
+	t_player	enemy;
 	t_field		map;
 	t_field		piece;
-	t_point		shr_piece_size;
 	t_point		step;
 }				t_filler;
 

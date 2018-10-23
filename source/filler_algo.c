@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modnosum <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 01:14:13 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/22 20:23:00 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 19:17:59 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,53 @@ t_bool			find_player_rect(t_field *map, char player, t_rectangle *rect)
 	return (found);
 }
 
-void            place_piece(t_filler *filler, t_rectangle *me, t_rectangle *enemy)
+t_bool			try_place(t_filler *filler, t_rectangle *piece, int x, int y)
 {
 	(void)filler;
-	(void)me;
-	(void)enemy;
+	(void)piece;
+	(void)x;
+	(void)y;
+	return (FALSE);
+}
+
+t_bool			place_piece(t_filler *filler, t_rectangle *piece)
+{
+	t_point		rp_size;
+	int			i;
+	int			j;
+
+	rp_size = (t_point){piece->right_bottom.x - piece->left_top.x,
+		piece->right_bottom.y - piece->left_top.y};
+	i = filler->me.pos.left_top.y;
+	while (i < filler->me.pos.right_bottom.y)
+	{
+		j = filler->me.pos.left_top.y;
+		while (j < filler->me.pos.right_bottom.y)
+		{
+			if ((i - (rp_size.y - 1) < 0 || j - (rp_size.x - 1) < 0 ||
+				i + (rp_size.y - 1) >= filler->map.size.y ||
+				j + (rp_size.x - 1) >= filler->map.size.x) && ++j)
+				continue ;
+			if (try_place(filler, piece, j, i))
+			{
+				filler->step = (t_point){j - filler->piece.size.y - 1,
+					i - filler->piece.size.y - 1};
+				return (TRUE);
+			}
+			++j;
+		}
+		++i;
+	}
+	return (FALSE);
 }
 
 void			filler_algo(t_filler *filler)
 {
-    t_rectangle	my_rect;
-    t_rectangle	enemy_rect;
+	t_rectangle piece;
 
-    filler->step = (t_point) {0, 0};
-    if (!find_player_rect(&filler->map, filler->me, &my_rect) ||
-        !find_player_rect(&filler->map, filler->enemy, &enemy_rect))
-        return ;
-    place_piece(filler, &my_rect, &enemy_rect);
+	if (!find_player_rect(&filler->map, filler->me.c, &filler->me.pos) ||
+		!find_player_rect(&filler->map, filler->enemy.c, &filler->enemy.pos) ||
+		!find_player_rect(&filler->piece, '*', &piece) ||
+		!place_piece(filler, &piece))
+		filler->step = (t_point){0, 0};
 }

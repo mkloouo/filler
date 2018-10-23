@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: modnosum <modnosum@gmail.com>              +#+  +:+       +#+        */
+/*   By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 01:10:41 by modnosum          #+#    #+#             */
-/*   Updated: 2018/10/11 18:47:19 by modnosum         ###   ########.fr       */
+/*   Updated: 2018/10/23 17:57:34 by modnosum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_bool			filler_parse_players(t_filler *filler)
 		if (!ft_strncmp(line, PLAYER_LINE, PLAYER_LINE_LEN))
 		{
 			tmp = ft_strtoi(ft_strchr(line, PLAYER_CHAR) + 1);
-			filler->me = (char)((tmp == 1) ? 'o' : 'x');
-			filler->enemy = (char)((tmp == 1) ? 'x' : 'o');
+			filler->me.c = (char)((tmp == 1) ? 'o' : 'x');
+			filler->enemy.c = (char)((tmp == 1) ? 'x' : 'o');
 			ret = TRUE;
 		}
 		free(line);

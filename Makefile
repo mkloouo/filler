@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/16 20:46:58 by modnosum          #+#    #+#              #
-#    Updated: 2018/10/23 18:06:51 by modnosum         ###   ########.fr        #
+#    Updated: 2018/10/23 19:16:16 by modnosum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ libft_PATH	:= ./libft
 include		$(libft_PATH)/Project.mk
 
 CC			:= gcc
-CFLAGS		:= -Wall -Werror -Wextra -pedantic -g -DDEBUG
+CFLAGS		:= -Wall -Werror -Wextra -pedantic -g
 IFLAGS		+= -I $(INC_DIR)
 LFLAGS		+=
 
