@@ -4,4 +4,6 @@ cmake-build*
 *.a
 *.o
 *.so
+*.log
 *.trace
+*.filler

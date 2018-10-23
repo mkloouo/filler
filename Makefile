@@ -6,7 +6,7 @@
 #    By: modnosum <modnosum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/16 20:46:58 by modnosum          #+#    #+#              #
-#    Updated: 2018/10/17 01:49:26 by modnosum         ###   ########.fr        #
+#    Updated: 2018/10/23 18:06:51 by modnosum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,17 @@ DIRS		:= $(sort $(dir $(OBJS)))
 RESET_COLOR	?= \e[0m
 RED_COLOR	?= \e[31m
 GREEN_COLOR	?= \e[32m
+
+RES_DIR := ./resources
+FILLER_VM := $(RES_DIR)/filler_vm
+MAPS_DIR := $(RES_DIR)/maps
+PLAYERS_DIR := $(RES_DIR)/players
+
+p1-run-%: ./resources/players/%.filler | $(NAME)
+	@$(FILLER_VM) -f $(MAPS_DIR)/map00 -p1 ./$(NAME) -p2 $< ; true
+
+p2-run-%: ./resources/players/%.filler | $(NAME)
+	@$(FILLER_VM) -f $(MAPS_DIR)/map00 -p1 $< -p2 ./$(NAME) ; true
 
 .MAIN: all
 .PHONY: all fclean clean re c f
