@@ -56,25 +56,25 @@ c: clean
 clean:
 	@$(MAKE) $(MFLAGS) -C $(libft_PATH) clean
 	@rm -fr $(OBJ_DIR)
-	@echo "Removed ft_ssl build directory."
+	@echo "Removed filler build directory."
 f: fclean
 fclean: clean
 	@$(MAKE) $(MFLAGS) -C $(libft_PATH) fclean
 	@rm -fr $(NAME)
-	@echo "Removed ft_ssl executable."
+	@echo "Removed filler executable."
 re: fclean all
 
 $(OBJ_DIR):
 	@mkdir -p $(DIRS)
-	@echo "Created ft_ssl build directory."
+	@echo "Created filler build directory."
 
 $(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) | $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(IFLAGS) $(CFLAGS)
 
 $(NAME): $(OBJS) | $(libft_NAME)
-	@echo "Finished compiling ft_ssl object files."
+	@echo "Finished compiling filler object files."
 	@$(CC) -o $@ $^ $(LFLAGS) $(IFLAGS) $(CFLAGS)
-	@echo "Finished ft_ssl."
+	@echo "Finished filler."
 
 $(libft_NAME): $(libft_DEPS)
 	@$(MAKE) $(MFLAGS) -C $(libft_PATH) all

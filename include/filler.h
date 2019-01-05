@@ -41,22 +41,40 @@ typedef struct	s_filler
 {
 	t_field		map;
 	t_field		piece;
-	t_point		step;
 	t_player	me;
 	t_player	enemy;
 	t_point		direction;
 	int			distance;
-	unsigned	first_time:1;
+	unsigned	first_time;
+	int			me_count;
+	int			enemy_count;
+	int			enemy_play;
+	t_point		*me_arr;
+	t_point		*enemy_arr;
 }				t_filler;
 
-void			parse_field(t_field *field, int offset, char const *pos_data);
+void			modnosum_filler(t_filler *filler);
+void			get_movement_direction(t_filler *filler);
+void			find_players_position(t_filler *filler);
+
+void			parse_field(t_field *field, int offset, char *data);
 void			free_field(t_field *field, int inset);
 
-void			place_piece(t_filler *filler);
+void			filler_algo(t_filler *filler);
+t_point			find_coords(t_filler *filler);
+int				place_piece(t_filler *filler, t_point me, t_point *tmp_coords);
+int				try_place(t_filler *filler, t_point coords);
+t_point			find_place(t_filler *filler);
 
-void			find_players_position(t_filler *filler);
-void			get_movement_direction(t_filler *filler);
-void			get_distance(t_filler *filler);
-void			move_in_direction(t_filler *filler);
+void			count_pieces(t_filler *filler);
+void			init_pieces_count(t_filler *filler);
+void			big_map(t_filler *filler, t_point *coords);
+void			small_map(t_filler *filler, t_point *coords);
+
+int				check_if_enemy_play(t_filler *filler);
+void			initialize_arrays(t_filler *filler);
+void			create_arrays(t_filler *filler);
+int				valid_coords(t_filler *filler, t_point coords);
+int				get_distance(t_point p1, t_point p2);
 
 #endif
